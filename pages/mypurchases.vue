@@ -55,6 +55,7 @@
 
 <script>
 export default {
+  middleware: 'auth',
   data: () => ({
     orders: [{
       code: '4376',

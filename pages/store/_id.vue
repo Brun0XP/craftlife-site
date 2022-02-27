@@ -28,7 +28,7 @@
         </fieldset>
       </div>
 
-      <PixCard v-if="selectedPmtMethod == 'pix'" />
+      <PixCard v-if="selectedPmtMethod == 'pix'" :transaction_amount="total" :description="product.name + 'de' + $auth.user.realname"/>
       <CreditCard v-if="selectedPmtMethod == 'credit-card'" />
 
     </div>
@@ -79,18 +79,26 @@
               'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500': selectedPmtMethod,
               'bg-gray-400 cursor-default': !selectedPmtMethod,
             }"
-            @click="checkout" v-text="'Confirmar compra'"
-          />
+            @click="checkout"
+          >
+            <span v-if="loading()">Loading...</span>
+            <span v-else>Confirmar compra</span>
+          </button>
         </div>
+      </div>
+
+      <div class="mt-4 bg-red-700 rounded-lg shadow-sm">
+        <p v-if="error()" class="p-4 text-center font-bold text-xl text-red-200" v-text="error()" />
       </div>
     </div>
   </Container>
 </template>
 
 <script>
-import { mapActions} from 'vuex';
+import { mapActions, mapGetters} from 'vuex';
 
 export default {
+  middleware: 'auth',
   asyncData(context) {
     context.store.dispatch('mercadopago/initMercadopago', context);
   },
@@ -137,6 +145,7 @@ export default {
     this.$axios.get('/product/' + this.$route.params.id).then(response => {
       this.product = response.data;
     });
+    console.log(this.error);
   },
   watch: {
     selectedPmtMethod(value) {
@@ -152,6 +161,10 @@ export default {
       createCardToken: 'mercadopago/createCardToken',
       createPayment: 'mercadopago/createPayment',
       checkoutPix: 'mercadopago/checkoutPix',
+    }),
+    ...mapGetters({
+      error: 'error',
+      loading: 'loading',
     }),
     async checkout() {
       const isPersonalFormValid = await this.$refs['personal-form'].validate()

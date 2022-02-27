@@ -21,10 +21,16 @@ export const actions = {
     /* eslint-disable no-undef */
     commit('mutationMercadopago', new MercadoPago($config.mercadopagoPublicKey));
   },
-  checkoutPix({commit,}, payload) {
+  checkoutPix({ commit, dispatch}, payload) {
+    dispatch('toggleLoading', true, { root: true });
+    commit('mutationError', null, { root: true });
     this.$axios.post('/payments/pix', payload)
       .then(response => {
         commit('mutationQRCode', { value: response.data.qr_code, base64: response.data.qr_code_base64 });
+        dispatch('toggleLoading', false, { root: true });
+      }).catch(error => {
+        commit('mutationError', error.response.data.message, { root: true });
+        dispatch('toggleLoading', false, { root: true });
       })
   },
 }
