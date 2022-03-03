@@ -15,7 +15,7 @@
           </div>
           <div class="p-6 flex flex-col">
             <h2 class="text-xl leading-relaxed text-gray-500 dark:text-gray-400">
-              Pague R$ 20.00
+              Pague R$ {{ transaction_amount }}
             </h2>
             <ol class="list-decimal list-inside mt-6">
               <li class="mb-1">

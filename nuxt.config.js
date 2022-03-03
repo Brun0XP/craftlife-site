@@ -39,7 +39,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~/plugins/vee-validate.js",
-    '~plugins/v-mask.js',
+    '~/plugins/v-mask.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -59,10 +59,21 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/onesignal',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
 
+  oneSignal: {
+    cdn: true,
+    init: {
+      appId: '08d51612-2972-460d-824b-8f82e447ee05',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: true
+      }
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
