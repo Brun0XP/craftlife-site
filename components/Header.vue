@@ -70,7 +70,6 @@ export default {
         name: 'Home',
         href: '/',
         icon: 'mdi mdi-home',
-        isActive: true
       },
       {
         name: 'Forums',
