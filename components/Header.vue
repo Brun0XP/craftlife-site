@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar :navItems="navbarItems"/>
+    <NavBar :nav-items="navbarItems"/>
     <!-- Header -->
     <div class="relative">
       <div class="absolute inset-0">
