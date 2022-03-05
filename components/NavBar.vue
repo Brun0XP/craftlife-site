@@ -12,15 +12,17 @@
           </div>
           <!-- Primary Navbar items -->
           <div class="hidden md:flex items-center space-x-1">
-            <NuxtLink v-for="(navItem, index) in navItems" :key="index" :to="navItem.href"
-              class="py-2 px-2 font-semibold"
-              :class="{
-                'text-green-500 border-b-4 border-green-500': $route.path === navItem.href,
-                'text-gray-200 hover:text-green-500 transition duration-300': $route.path !== navItem.href,
-              }"
-            >
-              <span v-text="navItem.name"></span>
-            </NuxtLink>
+            <div v-for="(navItem, index) in navItems" :key="index" >
+              <component :is="navItem.external ? 'a' : 'NuxtLink'" :to="navItem.href" :href="navItem.href" :target="navItem.external ? '_blank' : ''"
+                class="py-2 px-2 font-semibold"
+                :class="{
+                  'text-green-500 border-b-4 border-green-500': $route.path === navItem.href,
+                  'text-gray-200 hover:text-green-500 transition duration-300': $route.path !== navItem.href,
+                }"
+              >
+                <span v-text="navItem.name"></span>
+              </component>
+            </div>
           </div>
         </div>
         <!-- Secondary Navbar items -->

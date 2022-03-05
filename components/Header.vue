@@ -75,8 +75,9 @@ export default {
       },
       {
         name: 'Regras',
-        href: '/regras',
+        href: 'https://williamestrela.gitbook.io/craftlife-ajuda/regras',
         icon: 'mdi mdi-comment-text-multiple',
+        external: true,
       },
       {
         name: 'Loja',
