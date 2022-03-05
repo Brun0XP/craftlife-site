@@ -15,7 +15,9 @@
             <div class="bg-white bg-opacity-30 rounded-2xl shadow-xl cursor-pointer transition ease-in-out transform hover:-translate-y-2">
               <div class="flex justify-between items-center pl-6 pr-2 py-2">
                 <div>
-                  <h3 class="text-2xl font-medium text-gray-200">JOGADORES ONLINE 254</h3>
+                  <h3 class="text-2xl font-medium text-gray-200">
+                    JOGADORES ONLINE <span v-text="server_status.players_online"/>
+                  </h3>
                   <p class="text-base text-gray-300">Clique para copiar o IP</p>
                 </div>
                 <div class="p-5 inline-block bg-indigo-600 rounded-xl shadow-lg">
@@ -30,7 +32,7 @@
                 </div>
                 <div>
                   <h3 class="text-2xl font-medium text-gray-200 text-right">
-                    <span v-text="amountDiscordOnline"/> ONLINE AGORA
+                    <span v-text="online_discord"/> ONLINE AGORA
                   </h3>
                   <p class="text-base text-gray-300 text-right">Clique para se juntar</p>
                 </div>
@@ -72,8 +74,8 @@ export default {
         icon: 'mdi mdi-home',
       },
       {
-        name: 'Forums',
-        href: '/forum',
+        name: 'Regras',
+        href: '/regras',
         icon: 'mdi mdi-comment-text-multiple',
       },
       {
@@ -92,13 +94,20 @@ export default {
         icon: 'mdi mdi-shield-check',
       },
     ],
-    amountDiscordOnline: 0,
+    online_discord: 0,
+    server_status: {
+      players_online: 0,
+    },
   }),
   mounted() {
     window.particlesJS('particles-js', particlesConfig);
     this.$axios.$get('https://discordapp.com/api/guilds/94235856516153344/widget.json')
       .then(response => {
-        this.amountDiscordOnline = response.presence_count
+        this.online_discord = response.presence_count
+      })
+    this.$axios.get('server/status')
+      .then(response => {
+        this.server_status = response.data
       })
   },
 }

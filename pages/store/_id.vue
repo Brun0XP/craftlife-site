@@ -145,7 +145,6 @@ export default {
     this.$axios.get('/product/' + this.$route.params.id).then(response => {
       this.product = response.data;
     });
-    console.log(this.error);
   },
   watch: {
     selectedPmtMethod(value) {

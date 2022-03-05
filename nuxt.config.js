@@ -96,7 +96,6 @@ export default {
   auth: {
     redirect: {
       login: '/auth/login',
-      logout: '/auth/logout',
     },
     strategies: {
       local: {

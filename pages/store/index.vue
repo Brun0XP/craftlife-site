@@ -50,7 +50,6 @@ export default {
   watch: {
     currentIndex(value) {
       this.selectedCategory = this.product.categories[value];
-      console.log(this.selectedCategory)
     }
   }
 }
