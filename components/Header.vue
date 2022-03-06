@@ -100,8 +100,7 @@ export default {
       players_online: 0,
     },
   }),
-  mounted() {
-    window.particlesJS('particles-js', particlesConfig);
+  created() {
     this.$axios.$get('https://discordapp.com/api/guilds/94235856516153344/widget.json')
       .then(response => {
         this.online_discord = response.presence_count
@@ -111,6 +110,9 @@ export default {
         this.server_status = response.data
       })
   },
+  mounted() {
+    window.particlesJS('particles-js', particlesConfig);
+  }
 }
 </script>
 

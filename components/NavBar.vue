@@ -35,13 +35,11 @@
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
           <button class="outline-none" @click="showMobileMenu = !showMobileMenu">
-            <i
-              :class="{
-                'mdi mdi-menu': !showMobileMenu,
-                'mdi mdi-close': showMobileMenu,
-              }"
-              class="mdi text-2xl text-gray-500 hover:text-green-500"
-            />
+            <svg class="hamburger" :class="{ ['is-opened']: showMobileMenu }">
+              <line x1="0" y1="50%" x2="100%" y2="50%" class="hamburger__bar hamburger__bar--top" />
+              <line x1="0" y1="50%" x2="100%" y2="50%" class="hamburger__bar hamburger__bar--mid" />
+              <line x1="0" y1="50%" x2="100%" y2="50%" class="hamburger__bar hamburger__bar--bot" />
+            </svg>
           </button>
         </div>
       </div>
@@ -78,3 +76,38 @@ export default {
   }),
 }
 </script>
+
+<style scoped>
+.hamburger {
+  width: 16px;
+  height: 16px;
+}
+
+.hamburger__bar {
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transform-origin: center;
+  stroke: white;
+  stroke-width: 10%;
+}
+
+.hamburger__bar--top {
+  transform: translateY(-40%);
+}
+
+.hamburger__bar--bot {
+  transform: translateY(40%);
+}
+
+.is-opened .hamburger__bar--top {
+  transform: rotate(45deg);
+}
+
+.is-opened .hamburger__bar--mid {
+  transform: scaleX(0.1);
+}
+
+.is-opened .hamburger__bar--bot {
+  transform: rotate(-45deg);
+}
+</style>
