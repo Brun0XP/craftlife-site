@@ -35,19 +35,14 @@
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
           <button class="outline-none" @click="showMobileMenu = !showMobileMenu">
-          <svg
-            class=" w-6 h-6 text-gray-500 hover:text-green-500 "
-            x-show="!showMenu"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+            <i
+              :class="{
+                'mdi mdi-menu': !showMobileMenu,
+                'mdi mdi-close': showMobileMenu,
+              }"
+              class="mdi text-2xl text-gray-500 hover:text-green-500"
+            />
+          </button>
         </div>
       </div>
     </div>
@@ -55,8 +50,8 @@
     <div v-if="showMobileMenu">
       <ul class="py-2">
         <li v-for="(navItem, index) in navItems" :key="index">
-          <NuxtLink
-            :to="navItem.href"
+          <component
+            :is="navItem.external ? 'a' : 'NuxtLink'" :to="navItem.href" :href="navItem.href" :target="navItem.external ? '_blank' : ''"
             class="block text-md px-6 py-2 text-gray-200"
             :class="{
               'text-green-500 font-semibold': $route.path === navItem.href,
