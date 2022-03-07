@@ -85,8 +85,8 @@ export default {
         icon: 'mdi mdi-cart-arrow-right',
       },
       {
-        name: 'Bans',
-        href: '/bans',
+        name: 'Punições',
+        href: '/punishments',
         icon: 'mdi mdi-shield-off',
       },
       {
