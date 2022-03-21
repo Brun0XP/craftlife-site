@@ -122,7 +122,8 @@ export default {
       securityCode: '',
       identificationType: 'CPF',
       identificationNumber: '',
-    }
+    },
+    showPixModal: false,
   }),
   computed: {
     cardExpirationDate: {
@@ -176,6 +177,7 @@ export default {
           lastName: this.form.surname,
           cpf: this.form.identificationNumber
         })
+        this.showPixModal = true;
       }
     },
   }

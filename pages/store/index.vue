@@ -16,17 +16,14 @@
 <script>
 export default {
   middleware: 'auth',
+  async asyncData({ $axios }) {
+    const listing = (await $axios.get('/product')).data
+    return { listing }
+  },
   data: () => ({
-    listing: [],
     category: null,
     subcategory: null,
   }),
-  async created() {
-    await this.$axios.get('/product').then(response => {
-      this.listing = response.data;
-    });
-    console.log(this.product)
-  },
   methods: {
     selectCategory(category) {
       this.category = category

@@ -46,7 +46,6 @@ export default {
   methods: {
     selectTab (i) {
       this.activeIndex = i
-
       this.tabs.forEach((tab, index) => {
         tab.isActive = (index === i)
       })

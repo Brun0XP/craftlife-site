@@ -1,11 +1,16 @@
 <template>
   <ValidationProvider v-slot="{ errors }" :name="label" :rules="validationRules">
     <div :class="{ 'mb-2': errors[0] }">
-      <label :for="id" class="block text-sm font-medium text-gray-200" v-text="label" />
+      <label :for="id" class="text-sm font-medium text-gray-200 flex justify-between items-center">
+        <span v-text="label"/>
+        <NuxtLink v-if="link" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" :to="link.to" v-text="link.name" />
+      </label>
       <div class="mt-1">
         <input
           :id="id" v-model="model" v-mask="mask" type="text" :name="id" :autocomplete="autocomplete"
           class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          :class="{ 'border-red-500': errors[0] }"
+          @blur="$emit('blur')"
         />
       </div>
     </div>
@@ -39,7 +44,10 @@ export default {
     mask: {
       type: String,
       default: ''
-    }
+    },
+    link: {
+      type: Object,
+    },
   },
   computed: {
     model: {
