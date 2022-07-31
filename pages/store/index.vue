@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TabView>
+    <TabView v-if="listing.categories">
       <TabPanel v-for="(category, index) in listing.categories" :key="index" :header="category.name" @tab-activated="selectCategory(category)">
         <TabView v-if="category.only_subcategories" class="pt-4">
           <TabPanel v-for="(subcategory, index) in category.subcategories" :key="index" :header="subcategory.name" @tab-activated="selectSubcategory(subcategory)">
