@@ -12,11 +12,11 @@
         <img class="hero mx-auto" height="300px" width="300px" src="@/assets/img/hero.png">
         <section class="max-w-5xl mx-auto z-10 pb-10 px-4 sm:px-6 lg:px-8" aria-labelledby="contact-heading">
           <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-2 lg:gap-y-0 lg:gap-x-40">
-            <div class="bg-white bg-opacity-30 rounded-2xl shadow-xl cursor-pointer transition ease-in-out transform hover:-translate-y-2">
+            <div class="bg-white bg-opacity-30 rounded-2xl shadow-xl cursor-pointer transition ease-in-out transform hover:-translate-y-2" @click="copyIp()">
               <div class="flex justify-between items-center pl-6 pr-2 py-2">
                 <div>
                   <h3 class="text-2xl font-medium text-gray-200">
-                    JOGADORES ONLINE <span v-text="server_status.players_online"/>
+                    jogar.craftlife.com.br
                   </h3>
                   <p class="text-base text-gray-300">Clique para copiar o IP</p>
                 </div>
@@ -96,22 +96,21 @@ export default {
       },
     ],
     online_discord: 0,
-    server_status: {
-      players_online: 0,
-    },
   }),
   created() {
     this.$axios.$get('https://discordapp.com/api/guilds/94235856516153344/widget.json')
       .then(response => {
         this.online_discord = response.presence_count
       })
-    this.$axios.get('server/status')
-      .then(response => {
-        this.server_status = response.data
-      })
   },
   mounted() {
     window.particlesJS('particles-js', particlesConfig);
+  },
+  methods: {
+    copyIp() {
+      navigator.clipboard.writeText('jogar.craftlife.com.br');
+      alert("Ip do servidor copiado para sua área de transferência!");
+    }
   }
 }
 </script>
