@@ -12,12 +12,19 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Craftlife - Servidor de Minecraft',
+    title: 'CraftLife - Servidor de Minecraft Survival e Creative 1.19.2',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
+      { name: 'title', content: 'CraftLife - Servidor de Minecraft Survival e Creative 1.19.2' },
+      { name: 'description', content: 'Servidor de Minecrft Pirata e Original' },
+      { name: 'keywords', content: 'craft life, servidor de minecraft, minecraft sertver, minecraft, server' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'Content-Type', content: 'text/html; charset=utf-8' },
+      { name: 'language', content: 'Portuguese' },
+      { name: 'revisit-after', content: '3 days' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
