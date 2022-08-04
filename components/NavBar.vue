@@ -28,9 +28,13 @@
         </div>
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3 ">
+          <NuxtLink to="/checkout/basket" class="w-10 h-10 flex relative items-center justify-center text-gray-200 rounded-lg mr-2">
+            <i class="mdi mdi-cart-outline text-xl"></i>
+            <span class="sr-only">Carrinho de compras</span>
+            <div class="inline-flex absolute top-0 -right-1 justify-center items-center w-5 h-5 text-xs font-bold text-gray-200 bg-red-500 rounded-full border-2 border-red-300" v-text="shoppingCart.length"/>
+          </NuxtLink>
           <AccountDropdown v-if="$auth.loggedIn"/>
           <NuxtLink v-else to="/auth/login" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Fazer login</NuxtLink>
-
         </div>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
@@ -64,6 +68,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   props: {
     navItems: {
@@ -74,6 +80,11 @@ export default {
   data: () => ({
     showMobileMenu: false,
   }),
+  computed: {
+    ...mapGetters({
+      shoppingCart: 'store/shoppingCart',
+    }),
+  },
 }
 </script>
 

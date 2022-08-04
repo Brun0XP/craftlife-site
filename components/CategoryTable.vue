@@ -9,18 +9,21 @@
             <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3">
               <div v-for="product in category.packages" :key="product.id" class="bg-gray-700 p-4 rounded-lg">
                 <div class="relative">
-                  <div class="relative w-full h-72 rounded-lg overflow-hidden">
-                    <img :src="product.image" class="w-full h-full object-center object-cover" />
+                  <div class="relative rounded-lg overflow-hidden">
+                    <img v-if="product.image" :src="product.image" class="mb-4 w-full h-full object-center object-cover" />
                   </div>
-                  <div class="mt-4 flex justify-between text-gray-200">
+                  <div class="flex justify-between text-gray-200">
                     <h3 class="font-medium" v-text="product.name" />
-                    <h3 class="text-xl font-bold " v-text="'R$ ' + product.price" />
+                    <h3 class="text-xl font-bold " v-text="formatCurrency(product.price)" />
                   </div>
                 </div>
                 <div class="mt-6">
-                  <NuxtLink :to="'/store/' + product.id" class="relative flex bg-green-500 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200 cursor-pointer">
-                    Comprar agora<span class="sr-only" v-text="product.name" />
-                  </NuxtLink>
+                  <Button v-if="!hasInCart(product.id)" @click="addToCart(product)" class="w-full bg-green-500 border border-transparent rounded-md py-2 px-8 text-sm font-medium text-gray-900 hover:bg-green-700">
+                    Adicionar ao carrinho <span class="sr-only" v-text="product.name" />
+                  </Button>
+                  <Button v-else @click="removeFromCart(product.id)" class="w-full bg-red-600 border border-transparent rounded-md py-2 px-8 text-sm font-medium text-gray-900 hover:bg-red-800">
+                    Remover do carrinho <span class="sr-only" v-text="product.name" />
+                  </Button>
                 </div>
               </div>
             </div>
@@ -31,12 +34,31 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   props: {
     category: {
       type: Object,
       required: true
     },
-  }
+  },
+  methods: {
+    ...mapActions({
+      addToCart: 'store/addToCart',
+      removeFromCart: 'store/removeFromCart',
+    }),
+    hasInCart(productId) {
+      return this.shoppingCart.map(item => item.id).includes(productId);
+    },
+    formatCurrency(value) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+    } 
+  },
+  computed: {
+    ...mapGetters({
+      shoppingCart: 'store/shoppingCart'
+    })
+  },
 }
 </script>

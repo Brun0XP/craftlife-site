@@ -4,6 +4,15 @@ export const state = () => ({
   qrcode: null
 })
 
+export const getters = {
+  async getPaymentMethod(state, payload) {
+    return await state.mercadopago.getPaymentMethods(payload);
+  },
+  qrCode: state => state.qrcode,
+  mercadopago: state => state.mercadopago,
+}
+
+
 export const mutations = {
   mutationMercadopago(state, payload) {
     state.mercadopago = payload;
@@ -33,11 +42,4 @@ export const actions = {
         dispatch('toggleLoading', false, { root: true });
       })
   },
-}
-
-export const getters = {
-  async getPaymentMethod(state, payload) {
-    return await state.mercadopago.getPaymentMethods(payload);
-  },
-  qrCode: state => state.qrcode,
 }

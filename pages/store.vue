@@ -14,18 +14,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  middleware: 'auth',
   data: () => ({
-    listing: [],
     category: null,
     subcategory: null,
   }),
-  async created() {
-    await this.$axios.get('/product').then(response => {
-      this.listing = response.data;
-    });
-    console.log(this.product)
+  created() {
+    this.$store.dispatch('store/fetchListing')
   },
   methods: {
     selectCategory(category) {
@@ -34,6 +31,11 @@ export default {
     selectSubcategory(subCategory) {
       this.subcategory = subCategory
     },
-  }
+  },
+  computed: {
+    ...mapGetters({
+      listing: 'store/listing',
+    }),
+  },
 }
 </script>

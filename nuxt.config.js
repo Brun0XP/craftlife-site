@@ -42,6 +42,7 @@ export default {
     '~/plugins/vee-validate.js',
     '~/plugins/v-mask.js',
     '~/plugins/v-fb-customer-chat.js',
+    '~/plugins/persisted-state.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
