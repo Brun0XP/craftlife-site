@@ -75,16 +75,16 @@ export default {
     '@nuxtjs/pwa',
   ],
 
-  oneSignal: {
-    cdn: true,
-    init: {
-      appId: '08d51612-2972-460d-824b-8f82e447ee05',
-      allowLocalhostAsSecureOrigin: true,
-      welcomeNotification: {
-          disable: true
-      }
-    }
-  },
+  // oneSignal: {
+  //   cdn: true,
+  //   init: {
+  //     appId: '08d51612-2972-460d-824b-8f82e447ee05',
+  //     allowLocalhostAsSecureOrigin: true,
+  //     welcomeNotification: {
+  //         disable: true
+  //     }
+  //   }
+  // },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
