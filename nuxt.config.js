@@ -16,7 +16,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Servidor de Minecrft Pirata e Original' },
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'title', content: 'CraftLife - Servidor de Minecraft Survival e Creative 1.19.2' },
       { name: 'description', content: 'Servidor de Minecrft Pirata e Original' },
