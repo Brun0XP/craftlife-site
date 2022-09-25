@@ -89,11 +89,21 @@ export default {
         href: '/punishments',
         icon: 'mdi mdi-shield-off',
       },
+      // {
+      //   name: 'Votar',
+      //   href: '/vote',
+      //   icon: 'mdi mdi-shield-check',
+      // },
       {
-        name: 'Votar',
-        href: '/vote',
-        icon: 'mdi mdi-shield-check',
+        name: 'Discord',
+        href: '/discord',
+        icon: 'mdi mdi-discord',
       },
+      {
+        name: 'Contato',
+        href: '/contact',
+        icon: 'mdi mdi-phone',
+      }
     ],
     online_discord: 0,
   }),
