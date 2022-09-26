@@ -6,7 +6,7 @@
       </div>
 
       <div class="bg-gray-800 rounded-lg">
-        <a href="https://api.whatsapp.com/send?phone=5583996440363" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=5562992638525" target="_blank">
           <h1 class="text-gray-50 text-2xl text-bold bg-gray-900 p-4 rounded-t-lg flex justify-between">
             Whatsapp
             <i class="mdi mdi-whatsapp"></i>
